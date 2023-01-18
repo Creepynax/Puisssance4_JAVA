@@ -17,7 +17,7 @@ class Partie{
         int vainqueur = -1;
         int cJoueur = 0;
 
-        while (vainqueur==-1) {
+        while (vainqueur ==-1) {
             joueurs[cJoueur].joue(jeu);
             if (jeu.estPlein()) {
                 vainqueur = -1;

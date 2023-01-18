@@ -2,6 +2,8 @@ package org.joueur;
 
 import org.jeu.Jeu;
 
+import java.util.Scanner;
+
 public class Joueur {
     private String nom;
     private int couleur;
