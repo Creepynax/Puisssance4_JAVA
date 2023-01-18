@@ -51,36 +51,32 @@ public class Jeu {
     public final static int BLEU = 1;
     public final static int ROUGE = 2;
 
-    private int taille;
+    private int ligne = 6;
+    private int colonne = 7;
     private int[][] grille;   // 0 = vide, 1 = joueur bleu, 2 = joueur rouge
 
-    public Jeu(int taille) {
-        initJeu(taille);
-    }
-
     public Jeu() {
-        initJeu(8);
+        initJeu();
     }
 
-    private void initJeu(int taille) {
-        this.taille = taille;
-        grille = new int[taille][taille];
-        for (int col = 0; col < taille ; col++) {
-            for (int row = 0; row < taille; row++) {
+    private void initJeu() {
+        grille = new int[colonne][ligne];
+        for (int col = 0; col < colonne ; col++) {
+            for (int row = 0; row < ligne; row++) {
                 grille[col][row] = VIDE;
             }
         }
     }
 
     public boolean joueCoup(int col, int joueur) {
-        if ((col < 0) || (col >= taille)) {
+        if ((col < 0) || (col >= colonne)) {
             return false;
         }
 
         // Trouve la première place vide dans la colonne
-        for (int ligne = 0; ligne < taille; ligne++) {
-            if (grille[col][ligne] == VIDE) {
-                grille[col][ligne] = joueur;
+        for (int row = 0; row < ligne; row++) {
+            if (grille[col][row] == VIDE) {
+                grille[col][row] = joueur;
                 return true;
             }
         }
@@ -99,21 +95,21 @@ public class Jeu {
      */
     public boolean cherche4() {
         // Vérifie les horizontales ( - )
-        for (int ligne = 0; ligne < taille; ligne++) {
-            if (cherche4alignes(0, ligne, 1, 0)) {
+        for (int row = 0; row < ligne; row++) {
+            if (cherche4alignes(0, row, 1, 0)) {
                 return true;
             }
         }
 
         // Vérifie les verticales ( ¦ )
-        for (int col = 0; col < taille; col++) {
+        for (int col = 0; col < colonne; col++) {
             if (cherche4alignes(col, 0, 0, 1)) {
                 return true;
             }
         }
 
         // Diagonales (cherche depuis la ligne du bas)
-        for (int col = 0; col < taille; col++) {
+        for (int col = 0; col < colonne; col++) {
             // Première diagonale ( / )
             if (cherche4alignes(col, 0, 1, 1)) {
                 return true;
@@ -125,13 +121,13 @@ public class Jeu {
         }
 
         // Diagonales (cherche depuis les colonnes gauches et droites)
-        for (int ligne = 0; ligne < taille; ligne++) {
+        for (int row = 0; row < ligne; row++) {
             // Première diagonale ( / )
-            if (cherche4alignes(0, ligne, 1, 1)) {
+            if (cherche4alignes(0, row, 1, 1)) {
                 return true;
             }
             // Deuxième diagonale ( \ )
-            if (cherche4alignes(taille - 1, ligne, -1, 1)) {
+            if (cherche4alignes(colonne - 1, ligne, -1, 1)) {
                 return true;
             }
         }
@@ -151,19 +147,19 @@ public class Jeu {
      * - 2ème diagonale: dCol = 1, dLigne = -1
      *
      * @param oCol   Colonne d'origine de la recherche
-     * @param oLigne Ligne d'origine de la recherche
+     * @param oRow Ligne d'origine de la recherche
      * @param dCol   Delta de déplacement sur une colonne
-     * @param dLigne Delta de déplacement sur une ligne
+     * @param dRow Delta de déplacement sur une ligne
      * @return true si on trouve un alignement
      */
-    private boolean cherche4alignes(int oCol, int oLigne, int dCol, int dLigne) {
+    private boolean cherche4alignes(int oCol, int oRow, int dCol, int dRow) {
         int couleur = VIDE;
         int compteur = 0;
 
         int curCol = oCol;
-        int curRow = oLigne;
+        int curRow = oRow;
 
-        while ((curCol >= 0) && (curCol < taille) && (curRow >= 0) && (curRow < taille)) {
+        while ((curCol >= 0) && (curCol < colonne) && (curRow >= 0) && (curRow < ligne)) {
             if (grille[curRow][curCol] != couleur) {
                 // Si la couleur change, on réinitialise le compteur
                 couleur = grille[curRow][curCol];
@@ -180,7 +176,7 @@ public class Jeu {
 
             // On passe à l'itération suivante
             curCol += dCol;
-            curRow += dLigne;
+            curRow += dRow;
         }
 
         // Aucun alignement n'a été trouvé
@@ -193,9 +189,9 @@ public class Jeu {
      */
     public boolean estPlein() {
         // On cherche une case vide. S'il n'y en a aucune, le tableau est plein
-        for (int col = 0; col < taille; col++) {
-            for (int ligne = 0; ligne < taille; ligne++) {
-                if (grille[col][ligne] == VIDE) {
+        for (int col = 0; col < colonne; col++) {
+            for (int row = 0; row < ligne; row++) {
+                if (grille[col][row] == VIDE) {
                     return false;
                 }
             }
@@ -205,7 +201,7 @@ public class Jeu {
     }
 
     public int getTaille() {
-        return taille;
+        return grille.length;
     }
 
 }

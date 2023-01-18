@@ -3,10 +3,10 @@ package org.joueur;
 import org.jeu.Jeu;
 
 public class Joueur {
-    private String nom;
-    private int couleur;
+    public String nom;
+    public int couleur;
 
-    public Joueur(String nom, int couleur) {
+    public Player(String nom, int couleur) {
         this.nom = nom;
         this.couleur = couleur;
     }
