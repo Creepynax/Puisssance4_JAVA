@@ -54,15 +54,9 @@ public class Jeu {
     private int taille;
     private int[][] grille;   // 0 = vide, 1 = joueur bleu, 2 = joueur rouge
 
-    public Jeu(int taille) {
-        initJeu(taille);
-    }
 
-    public Jeu() {
-        initJeu(8);
-    }
 
-    private void initJeu(int taille) {
+    public void StartJeu(int taille) {
         this.taille = taille;
         grille = new int[taille][taille];
         for (int col = 0; col < taille ; col++) {

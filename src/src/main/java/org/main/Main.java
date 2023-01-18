@@ -2,6 +2,7 @@ package org.main;
 
 import org.tableau.Tableau;
 import org.menu.Menu;
+import org.jeu.*;
 
 public class Main {
     static Tableau tableau;
@@ -12,6 +13,9 @@ public class Main {
         tableau = new Tableau();
         System.out.println(tableau);
 
+
+        Jeu jeux1 = new Jeu();
+        jeux1.StartJeu(6);
 
     }
 }
