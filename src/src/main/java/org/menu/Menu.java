@@ -38,13 +38,7 @@ public class Menu {
             var Joueur1 = new Joueur(J1, C1);
 
             var bot = new IA();
-
-
             Jeu.JeuBot(Joueur1, bot);
-
-
-
-
 
         } else if (choix == 2) {
 
@@ -76,11 +70,8 @@ public class Menu {
 
         } else if (choix == 3) {
             System.out.println("Afficher la page de top Score");
+            Score.createScoreFile();
 
-            Score score1 = new Score("Player 1", 100, "2023-19-01");
-            Score score2 = new Score("Player 2", 200, "2023-19-01");
-            System.out.println(score1.compareTo(score2));
-// This will print -1 because score1 is less than score2
         } else if (choix == 4) {
             System.out.println("Merci d'avoir joué à notre jeu, au plaisir de vous revoir");
             System.exit(0);

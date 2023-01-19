@@ -8,10 +8,8 @@ import org.joueur.Joueur;
 
 
 public class Jeu {
-
     public static final String WHITE_BRIGHT = "\033[0;97m";  // WHITE
     private static boolean validPlay;
-
     public static void Jeu(Joueur Joueur1, Joueur Joueur2){
         Scanner in = new Scanner(System.in);
 
@@ -91,7 +89,6 @@ public class Jeu {
 
         }
     }
-
     public static void JeuBot(Joueur Joueur1, Joueur bot){
         Scanner in = new Scanner(System.in);
 
@@ -121,7 +118,7 @@ public class Jeu {
         //play a turn
         while (!winner && turn <= 42){
             boolean validPlay;
-            int play;
+            int play = 0;
             do {
                 if (Joueur == player1) {
 
@@ -129,6 +126,9 @@ public class Jeu {
 
                     System.out.print(Joueur + ", choisis une colonne: ");
 
+                    if (play < 1 || play > 7){
+                        System.out.println("Ce nombre sont different de celui du Tableau");
+                    }
                     play = in.nextInt();
 
                     //validate play
