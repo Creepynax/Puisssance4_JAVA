@@ -8,6 +8,7 @@ public class Menu {
 
     static Scanner scan = new Scanner(System.in);
     static Tableau tableau;
+
     public static void menu() {
         Scanner input = new Scanner(System.in);
         Scanner nom = new Scanner(System.in);
@@ -20,14 +21,30 @@ public class Menu {
             String J1 = scan.next();
 
         } else if (choix == 2) {
-            System.out.println("Placer la partie avec les deux joueurs");
+            System.out.println("Voici toutes les couleurs que nous vous proposons : " +
+                    "\n[1] Jouer en ROUGE " +
+                    "\n[2] Jouer en VERT " +
+                    "\n[3] Jouer en JAUNE " +
+                    "\n[4] Jouer en BLEU " +
+                    "\n[5] Jouer en VIOLET " +
+                    "\n[6] Jouer en CYAN " +
+                    "\n[7] Jouer en BLANC ");
+
             System.out.println("\nJoueur 1 : Quel pseudo voulez-vous ?");
             String J1 = scan.next();
-            System.out.println("Joueur 2 : Quel pseudo voulez-vous ?");
+            System.out.println("\nJoueur 1 : Quelle couleur voulez-vous ?");
+            int C1 = scan.nextInt();
+
+            var Joueur1 = new Joueur(J1, C1);
+
+            System.out.println("\nJoueur 2 : Quel pseudo voulez-vous ?");
             String J2 = scan.next();
-            new Joueur(J1, 12);
-            new Joueur(J2, 6);
-            Jeu.Jeu();
+            System.out.println("\nJoueur 2 : Quelle couleur voulez-vous ?");
+            int C2 = scan.nextInt();
+
+            var Joueur2 = new Joueur(J2, C2);
+
+            Jeu.Jeu(Joueur1, Joueur2);
 
         } else if (choix == 3) {
             System.out.println("Afficher la page de top Score");
