@@ -1,47 +1,40 @@
 package org.score;
 
+import java.io.IOException;
+import java.util.Date;
+import java.io.*;
+
 public class Score {
-    private String playerName;
-    private int scoreValue;
-    private String date;
-
-    // constructor to initialize the score
-    public Score(String playerName, int scoreValue, String date) {
-        this.playerName = playerName;
-        this.scoreValue = scoreValue;
-        this.date = date;
+    public static void createScoreFile(String player, int turn, Date date) {
+        File f = new File("score.txt");
+        try {
+            if (!f.exists()) {
+                f.createNewFile();
+            }
+            FileWriter fw = new FileWriter(f, true);
+            fw.write("Nom du gagnant : " + player + "\n");
+            fw.write("Score : " + turn + "\n");
+            fw.write("Date : " + date + "\n");
+            fw.write("-------------------\n");
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+    public static void afficheScore(){
+        try {
+            FileReader fr = new FileReader("score.txt");
+            BufferedReader br = new BufferedReader(fr);
 
-    // get and set methods for playerName
-    public String getPlayerName() {
-        return playerName;
-    }
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
 
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
-    }
-
-    // get and set methods for scoreValue
-    public int getScoreValue() {
-        return scoreValue;
-    }
-
-    public void setScoreValue(int scoreValue) {
-        this.scoreValue = scoreValue;
-    }
-
-    // get and set methods for date
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    // method to compare scores
-    public int compareTo(Score other) {
-        return Integer.compare(this.scoreValue, other.scoreValue);
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

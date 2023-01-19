@@ -3,14 +3,11 @@ package org.ia;
 import java.util.Random;
 import java.util.ArrayList;
 import org.joueur.Joueur;
-import org.jeu.Jeu;
 
 public class IA extends Joueur {
-
     private static Random rand;
-    private int couleur = (int) Math.random();
     public IA() {
-        super("Jarvis", 3);
+        super("Jarvis", 7);
         rand = new Random();
 
     }
