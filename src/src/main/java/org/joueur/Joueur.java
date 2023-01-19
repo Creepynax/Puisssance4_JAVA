@@ -4,21 +4,14 @@ package org.joueur;
 public class Joueur {
     private String nom;
     private String couleur;
-    public static final String RED_BRIGHT = "\033[0;91m";    // RED
-    public static final String GREEN_BRIGHT = "\033[0;92m";  // GREEN
-    public static final String YELLOW_BRIGHT = "\033[0;93m"; // YELLOW
-    public static final String BLUE_BRIGHT = "\033[0;94m";   // BLUE
-    public static final String PURPLE_BRIGHT = "\033[0;95m"; // PURPLE
-    public static final String CYAN_BRIGHT = "\033[0;96m";   // CYAN
 
-
-    public static final String RED = "\033[0;31m";     // RED
-    public static final String GREEN = "\033[0;32m";   // GREEN
-    public static final String YELLOW = "\033[0;33m";  // YELLOW
-    public static final String BLUE = "\033[0;34m";    // BLUE
-    public static final String PURPLE = "\033[0;35m";  // PURPLE
-    public static final String CYAN = "\033[0;36m";    // CYAN
-    public static final String WHITE = "\033[0;37m";   // WHITE
+    public static final String RED_BACKGROUND_BRIGHT = "\033[0;101m";// RED
+    public static final String GREEN_BACKGROUND_BRIGHT = "\033[0;102m";// GREEN
+    public static final String YELLOW_BACKGROUND_BRIGHT = "\033[0;103m";// YELLOW
+    public static final String BLUE_BACKGROUND_BRIGHT = "\033[0;104m";// BLUE
+    public static final String PURPLE_BACKGROUND_BRIGHT = "\033[0;105m"; // PURPLE
+    public static final String CYAN_BACKGROUND_BRIGHT = "\033[0;106m";  // CYAN
+    public static final String WHITE_BACKGROUND_BRIGHT = "\033[0;107m";   // WHITE
 
     public Joueur(String nom, int couleur) {
         //constructor
@@ -34,20 +27,22 @@ public class Joueur {
     public String getCouleur() {
         return couleur;
     }
-    private String determinerCouleur(int couleur) {
+    public String determinerCouleur(int couleur) {
         if (couleur == 1) {
-            return RED_BRIGHT;
+            return RED_BACKGROUND_BRIGHT;
         } else if (couleur == 2) {
-            return GREEN_BRIGHT;
+            return GREEN_BACKGROUND_BRIGHT;
         } else if (couleur == 3) {
-            return YELLOW_BRIGHT;
+            return YELLOW_BACKGROUND_BRIGHT;
         } else if (couleur == 4) {
-            return BLUE_BRIGHT;
+            return BLUE_BACKGROUND_BRIGHT;
         } else if (couleur == 5) {
-            return PURPLE_BRIGHT;
+            return PURPLE_BACKGROUND_BRIGHT;
         } else if (couleur == 6) {
-            return CYAN_BRIGHT;
-        }
+            return CYAN_BACKGROUND_BRIGHT;
+        } else if (couleur == 7) {
+        return WHITE_BACKGROUND_BRIGHT;
+    }
         return "Veuillez choisir une couleur";
     }
 }

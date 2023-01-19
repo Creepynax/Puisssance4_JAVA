@@ -5,6 +5,7 @@ import org.joueur.Joueur;
 import org.tableau.Tableau;
 import java.util.Scanner;
 import org.score.Score;
+import org.ia.IA;
 public class Menu {
 
     static Scanner scan = new Scanner(System.in);
@@ -17,9 +18,33 @@ public class Menu {
         int choix = Integer.parseInt(input.next());
 
         if (choix == 1) {
+            System.out.println("Vous allez PERDRE contre Jarvis !!!!");
+
+            System.out.println("Jarvis aura la couleur Blanche !");
+
+            System.out.println("\nVoici toutes les couleurs que nous vous proposons : " +
+                    "\n[1] Jouer en ROUGE " +
+                    "\n[2] Jouer en VERT " +
+                    "\n[3] Jouer en JAUNE " +
+                    "\n[4] Jouer en BLEU " +
+                    "\n[5] Jouer en VIOLET " +
+                    "\n[6] Jouer en CYAN ");
 
             System.out.println("\nJoueur 1 : Quel pseudo voulez-vous ?");
             String J1 = scan.next();
+            System.out.println("\nJoueur 1 : Quelle couleur voulez-vous ?");
+            int C1 = scan.nextInt();
+
+            var Joueur1 = new Joueur(J1, C1);
+
+            var bot = new IA();
+
+
+            Jeu.JeuBot(Joueur1, bot);
+
+
+
+
 
         } else if (choix == 2) {
 
