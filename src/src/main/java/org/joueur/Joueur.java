@@ -10,6 +10,7 @@ public class Joueur {
     public static final String BLUE_BRIGHT = "\033[0;94m";   // BLUE
     public static final String PURPLE_BRIGHT = "\033[0;95m"; // PURPLE
     public static final String CYAN_BRIGHT = "\033[0;96m";   // CYAN
+    public static final String WHITE_BRIGHT = "\033[0;97m";  // WHITE
 
     public Joueur(String nom, int couleur) {
         //constructor
@@ -36,6 +37,8 @@ public class Joueur {
             return PURPLE_BRIGHT;
         } else if (couleur == 6) {
             return CYAN_BRIGHT;
+        } else if (couleur == 7) {
+            return WHITE_BRIGHT;
         }
         return "Veuillez choisir une couleur";
     }

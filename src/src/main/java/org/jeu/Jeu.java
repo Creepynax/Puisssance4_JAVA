@@ -75,9 +75,9 @@ public class Jeu {
 
         if (winner){
             if (color.equals(pion1)){
-                System.out.println(player1 + " a gagné la partie !");
+                System.out.println(player2 + " a gagné la partie en " + turn + " coups !");
             }else{
-                System.out.println(player2 + " a gangé la partie !");
+                System.out.println(player1 + " a gangé la partie en " + turn + " coups !");
             }
         }else{
             System.out.println("Égalité entre les deux joueurs");
