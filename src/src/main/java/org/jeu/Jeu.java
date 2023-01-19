@@ -85,7 +85,7 @@ public class Jeu {
                 System.out.println(player2 + " a gagné la partie en " + turn + " coups !");
                 Score.createScoreFile(player2, turn, date);
             }else{
-                System.out.println(player1 + " a gangé la partie en " + turn + " coups !");
+                System.out.println(player1 + " a gagné la partie en " + turn + " coups !");
                 Score.createScoreFile(player1, turn, date);
             }
         }else{
@@ -171,11 +171,11 @@ public class Jeu {
         if (winner){
 
             if (color.equals(pion1)){
+                System.out.println(player2 + " a gagné la partie en " + turn + " coups !");
+                Score.createScoreFile(player2, turn, date);
+            }else{
                 System.out.println(player1 + " a gagné la partie en " + turn + " coups !");
                 Score.createScoreFile(player1, turn, date);
-            }else{
-                System.out.println(player2 + " a gangé la partie en " + turn + " coups !");
-                Score.createScoreFile(player2, turn, date);
             }
         }else{
             System.out.println("Égalité entre les deux joueurs");
