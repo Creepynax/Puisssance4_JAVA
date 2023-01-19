@@ -29,7 +29,7 @@ public class Jeu {
             do {
                 display(grid);
 
-                System.out.print("Player " + player + ", choose a column: ");
+                System.out.print("Le joueur " + player + ", choisis une colonne: ");
                 play = in.nextInt();
 
                 //validate play
@@ -62,12 +62,12 @@ public class Jeu {
 
         if (winner){
             if (player=='R'){
-                System.out.println("Black won");
+                System.out.println(player +" A GAGNÉ");
             }else{
-                System.out.println("Red won");
+                System.out.println(player +" A GAGNÉ");
             }
         }else{
-            System.out.println("Tie game");
+            System.out.println("EX AEQUO");
         }
 
     }
