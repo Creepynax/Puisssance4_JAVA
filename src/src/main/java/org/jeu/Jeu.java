@@ -1,12 +1,17 @@
 package org.jeu;
 
 import java.util.Scanner;
+
+import org.ia.IA;
 import org.joueur.Joueur;
+
 
 
 public class Jeu {
 
     public static final String WHITE_BRIGHT = "\033[0;97m";  // WHITE
+    private static boolean validPlay;
+
     public static void Jeu(Joueur Joueur1, Joueur Joueur2){
         Scanner in = new Scanner(System.in);
 
@@ -23,11 +28,11 @@ public class Jeu {
 
         String player1 = Joueur1.getNom();
         String color1 = Joueur1.getCouleur();
-        String pion1 = color1 + "@" + WHITE_BRIGHT;
+        String pion1 = color1 + " " + WHITE_BRIGHT;
 
         String player2 = Joueur2.getNom();
         String color2 = Joueur2.getCouleur();
-        String pion2 = color2 + "=" + WHITE_BRIGHT;
+        String pion2 = color2 + " " + WHITE_BRIGHT;
 
         String Joueur = player1;
         String color = pion1;
@@ -41,6 +46,7 @@ public class Jeu {
                 display(grid);
 
                 System.out.print(Joueur + ", choisis une colonne: ");
+
                 play = in.nextInt();
 
                 //validate play
@@ -74,6 +80,7 @@ public class Jeu {
         display(grid);
 
         if (winner){
+
             if (color.equals(pion1)){
                 System.out.println(player2 + " a gagné la partie en " + turn + " coups !");
             }else{
@@ -81,7 +88,102 @@ public class Jeu {
             }
         }else{
             System.out.println("Égalité entre les deux joueurs");
+
         }
+    }
+
+    public static void JeuBot(Joueur Joueur1, Joueur bot){
+        Scanner in = new Scanner(System.in);
+
+        String[][] grid = new String[6][7];
+
+        //initialize array
+        for (int row = 0; row < grid.length; row++){
+            for (int col = 0; col < grid[0].length; col++){
+                grid[row][col] = " ";
+            }
+        }
+
+        int turn = 1;
+
+        String player1 = Joueur1.getNom();
+        String color1 = Joueur1.getCouleur();
+        String pion1 = color1 + " " + WHITE_BRIGHT;
+
+        String player2 = "Jarvis";
+        String color2 = bot.determinerCouleur(7);
+        String pion2 = color2 + " " + WHITE_BRIGHT;
+
+        String Joueur = player1;
+        String color = pion1;
+        boolean winner = false;
+
+        //play a turn
+        while (!winner && turn <= 42){
+            boolean validPlay;
+            int play;
+            do {
+                if (Joueur == player1) {
+
+                    display(grid);
+
+                    System.out.print(Joueur + ", choisis une colonne: ");
+
+                    play = in.nextInt();
+
+                    //validate play
+                    validPlay = validate(play, grid);
+                }else {
+                        display(grid);
+
+                        play = IA.chooseMove(grid);
+
+
+                        validPlay = validate(play,grid);
+                    }
+
+
+
+
+                }while (!validPlay);
+
+
+            //drop the checker
+            for (int row = grid.length-1; row >= 0; row--){
+                if(grid[row][play].equals(" ")){
+                    grid[row][play] = color;
+                    break;
+                }
+            }
+
+            //determine if there is a winner
+            winner = isWinner(color,grid);
+
+            //switch players
+            if (color.equals(pion1)){
+                color = pion2;
+                Joueur = player2;
+            }else{
+                color = pion1;
+                Joueur = player1;
+            }
+
+            turn++;
+        }
+        display(grid);
+
+        if (winner){
+
+            if (color.equals(pion1)){
+                System.out.println(player1 + " a gagné la partie en " + turn + " !");
+            }else{
+                System.out.println(player2 + " a gangé la partie en " + turn + " !");
+            }
+        }else{
+            System.out.println("Égalité entre les deux joueurs");
+
+        }
+
 
     }
 
