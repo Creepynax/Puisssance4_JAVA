@@ -4,8 +4,9 @@ import org.jeu.Jeu;
 import org.joueur.Joueur;
 import org.tableau.Tableau;
 import java.util.Scanner;
-import org.score.Score;
 import org.ia.IA;
+import org.score.Score;
+
 public class Menu {
 
     static Scanner scan = new Scanner(System.in);
@@ -38,10 +39,10 @@ public class Menu {
             var Joueur1 = new Joueur(J1, C1);
 
             var bot = new IA();
+
             Jeu.JeuBot(Joueur1, bot);
 
         } else if (choix == 2) {
-
             System.out.println("Voici toutes les couleurs que nous vous proposons : " +
                     "\n[1] Jouer en ROUGE " +
                     "\n[2] Jouer en VERT " +
@@ -56,6 +57,7 @@ public class Menu {
             System.out.println("\nJoueur 1 : Quelle couleur voulez-vous ?");
             int C1 = scan.nextInt();
 
+
             var Joueur1 = new Joueur(J1, C1);
 
             System.out.println("\nJoueur 2 : Quel pseudo voulez-vous ?");
@@ -69,8 +71,14 @@ public class Menu {
             Jeu.Jeu(Joueur1, Joueur2);
 
         } else if (choix == 3) {
-            System.out.println("Afficher la page de top Score");
-            Score.createScoreFile();
+
+            Score.afficheScore();
+            Menu.menu();
+
+            //Score score1 = new Score("Player 1", 100, "2023-19-01");
+            //Score score2 = new Score("Player 2", 200, "2023-19-01");
+            //System.out.println(score1.compareTo(score2));
+
 
         } else if (choix == 4) {
             System.out.println("Merci d'avoir joué à notre jeu, au plaisir de vous revoir");

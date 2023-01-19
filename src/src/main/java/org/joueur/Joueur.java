@@ -39,6 +39,7 @@ public class Joueur {
         } else if (couleur == 5) {
             return PURPLE_BACKGROUND_BRIGHT;
         } else if (couleur == 6) {
+
             return CYAN_BACKGROUND_BRIGHT;
         } else if (couleur == 7) {
         return WHITE_BACKGROUND_BRIGHT;

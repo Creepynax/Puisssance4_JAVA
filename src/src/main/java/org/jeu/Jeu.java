@@ -1,15 +1,16 @@
 package org.jeu;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Date;
 
 import org.ia.IA;
 import org.joueur.Joueur;
-
-
+import org.score.Score;
 
 public class Jeu {
     public static final String WHITE_BRIGHT = "\033[0;97m";  // WHITE
-    private static boolean validPlay;
+
     public static void Jeu(Joueur Joueur1, Joueur Joueur2){
         Scanner in = new Scanner(System.in);
 
@@ -77,12 +78,16 @@ public class Jeu {
         }
         display(grid);
 
+        Date date = new Date();
+
         if (winner){
 
             if (color.equals(pion1)){
-                System.out.println(player1 + " a gagné la partie !");
+                System.out.println(player2 + " a gagné la partie en " + turn + " coups !");
+                Score.createScoreFile(player2, turn, date);
             }else{
-                System.out.println(player2 + " a gangé la partie !");
+                System.out.println(player1 + " a gagné la partie en " + turn + " coups !");
+                Score.createScoreFile(player1, turn, date);
             }
         }else{
             System.out.println("Égalité entre les deux joueurs");
@@ -120,9 +125,8 @@ public class Jeu {
             boolean validPlay;
             int play = 0;
             do {
+                display(grid);
                 if (Joueur == player1) {
-
-                    display(grid);
 
                     System.out.print(Joueur + ", choisis une colonne: ");
 
@@ -132,21 +136,15 @@ public class Jeu {
                     play = in.nextInt();
 
                     //validate play
-                    validPlay = validate(play, grid);
                 }else {
-                        display(grid);
 
-                        play = IA.chooseMove(grid);
-
-
-                        validPlay = validate(play,grid);
-                    }
+                    play = IA.chooseMove(grid);
 
 
+                }
+                validPlay = validate(play, grid);
 
-
-                }while (!validPlay);
-
+            }while (!validPlay);
 
             //drop the checker
             for (int row = grid.length-1; row >= 0; row--){
@@ -172,12 +170,16 @@ public class Jeu {
         }
         display(grid);
 
+        Date date = new Date();
+
         if (winner){
 
             if (color.equals(pion1)){
-                System.out.println(player1 + " a gagné la partie en " + turn + " !");
+                System.out.println(player2 + " a gagné la partie en " + turn + " coups !");
+                Score.createScoreFile(player2, turn, date);
             }else{
-                System.out.println(player2 + " a gangé la partie en " + turn + " !");
+                System.out.println(player1 + " a gagné la partie en " + turn + " coups !");
+                Score.createScoreFile(player1, turn, date);
             }
         }else{
             System.out.println("Égalité entre les deux joueurs");
